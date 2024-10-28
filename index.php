@@ -7,14 +7,14 @@
 </head>
 <body>
     <h1>計算BMI</h1>
-    <form action="result.php" method="post">
+    <form action="result.php" method="get">
     <div>
        <label for="height">身高:</label>
-       <input typr="number" name="height" id="height">/cm
+       <input typr="number" name="height" id="height" step="0.1">/cm
     </div>
     <div>
        <label for="weight">體重:</label>
-       <input typr="number" name="weight" id="weight">/kg
+       <input typr="number" name="weight" id="weight" step="0.1">/kg
     </div>
     <div>
        <input type ="submit" value="計算">
