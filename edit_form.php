@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>會員註冊</title>
+    <title>會員資料編輯</title>
     <style>
         h1{
             text-align: center;
@@ -77,35 +77,43 @@
 
 if(isset($_GET['status'])){
    if ($_GET['status'] == 1)
-       echo "註冊成功";
+       echo "更新成功";
    }else{
-       echo "註冊失敗";
+       echo "更新失敗";
    }
 
 ?>
 
-<h1>會員註冊</h1>
-<!-- form:post -->
+<h1>會員資料</h1>
+<!--form:post>(label+input:text)*4+div>input:submit+input:reset-->
+<?php
+$dsn="mysql:host=localhost;charset=utf8;dbname=crud";
+$pdo=new PDO($dsn,'root','');
 
-<form action="reg.php" method="post">
+
+$mem=$pdo->query("select * from `member` where `id`='{$_GET['id']}'")->fetch(PDO::FETCH_ASSOC);
+
+?>
+<form action="edit.php" method="post">
 <div>
     <label for="">帳號</label>:
-    <input type="text" name="acc" id="">
+    <input type="text" name="acc" value="<?=$mem['acc'];?>">
 </div>
 <div>
     <label for="">密碼</label>:
-    <input type="password" name="pw" id="">
+    <input type="password" name="pw" value="<?=$mem['pw'];?>">
 </div>
 <div>
     <label for="">電子郵件</label>:
-    <input type="text" name="email" id="">
+    <input type="text" name="email" value="<?=$mem['email'];?>">
 </div>
 <div>
     <label for="">電話</label>:
-    <input type="text" name="tel" id="">
+    <input type="text" name="tel" value="<?=$mem['tel'];?>">
 </div>
 <div>
-    <input type="submit" value="註冊">
+    <input type="hidden" name="id" value="<?=$mem['id'];?>">
+    <input type="submit" value="編輯">
     <input type="reset" value="重置">
 </div>
 </form>
