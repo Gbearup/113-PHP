@@ -1,6 +1,6 @@
 <?php
 
-if(!isset($_GET['id']) || is_numeric($_GET['id'])){
+if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
    echo "非法使用";
    exit();
 
